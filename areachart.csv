@@ -1,113 +1,113 @@
-﻿Country,Value,Date
-US,32,3/1/2020
-US,217910,4/1/2020
-US,1110909,5/1/2020
-US,1814009,6/1/2020
-US,2685191,7/1/2020
-US,4617614,8/1/2020
-US,6071171,9/1/2020
-US,7277791,10/1/2020
-India,3,3/1/2020
-India,1998,4/1/2020
-India,37257,5/1/2020
-India,198370,6/1/2020
-India,604641,7/1/2020
-India,1750723,8/1/2020
-India,3769523,9/1/2020
-India,6394068,10/1/2020
-Brazil,2,3/1/2020
-Brazil,6836,4/1/2020
-Brazil,92202,5/1/2020
-Brazil,526447,6/1/2020
-Brazil,1448753,7/1/2020
-Brazil,2707877,8/1/2020
-Brazil,3950931,9/1/2020
-Brazil,4847092,10/1/2020
-Russia,2,3/1/2020
-Russia,2777,4/1/2020
-Russia,114431,5/1/2020
-Russia,414328,6/1/2020
-Russia,653479,7/1/2020
-Russia,843890,8/1/2020
-Russia,997072,9/1/2020
-Russia,1179634,10/1/2020
-Colombia,0,3/1/2020
-Colombia,1065,4/1/2020
-Colombia,7006,5/1/2020
-Colombia,30493,6/1/2020
-Colombia,102009,7/1/2020
-Colombia,306181,8/1/2020
-Colombia,624026,9/1/2020
-Colombia,835339,10/1/2020
-Peru,0,3/1/2020
-Peru,1323,4/1/2020
-Peru,40459,5/1/2020
-Peru,170039,6/1/2020
-Peru,288477,7/1/2020
-Peru,407492,8/1/2020
-Peru,652037,9/1/2020
-Peru,814829,10/1/2020
-Spain,84,3/1/2020
-Spain,104118,4/1/2020
-Spain,215216,5/1/2020
-Spain,239638,6/1/2020
-Spain,249659,7/1/2020
-Spain,288522,8/1/2020
-Spain,470973,9/1/2020
-Spain,778607,10/1/2020
-Argentina,0,3/1/2020
-Argentina,1054,4/1/2020
-Argentina,4532,5/1/2020
-Argentina,17415,6/1/2020
-Argentina,67197,7/1/2020
-Argentina,196543,8/1/2020
-Argentina,428239,9/1/2020
-Argentina,765002,10/1/2020
-Mexico,5,3/1/2020
-Mexico,1378,4/1/2020
-Mexico,20739,5/1/2020
-Mexico,93435,6/1/2020
-Mexico,231770,7/1/2020
-Mexico,434193,8/1/2020
-Mexico,606036,9/1/2020
-Mexico,748315,10/1/2020
-South Africa,0,3/1/2020
-South Africa,1380,4/1/2020
-South Africa,5951,5/1/2020
-South Africa,34357,6/1/2020
-South Africa,159333,7/1/2020
-South Africa,503290,8/1/2020
-South Africa,628259,9/1/2020
-South Africa,676084,10/1/2020
-France,130,3/1/2020
-France,56989,4/1/2020
-France,165764,5/1/2020
-France,185952,6/1/2020
-France,194985,7/1/2020
-France,213031,8/1/2020
-France,306951,9/1/2020
-France,589825,10/1/2020
-Chile,9,3/1/2020
-Chile,3137,4/1/2020
-Chile,18687,5/1/2020
-Chile,129020,6/1/2020
-Chile,282043,7/1/2020
-Chile,357658,8/1/2020
-Chile,413145,9/1/2020
-Chile,464750,10/1/2020
-Iran,978,3/1/2020
-Iran,47593,4/1/2020
-Iran,95646,5/1/2020
-Iran,154445,6/1/2020
-Iran,230211,7/1/2020
-Iran,306752,8/1/2020
-Iran,376894,9/1/2020
-Iran,461044,10/1/2020
-United Kingdom,94,3/1/2020
-United Kingdom,43398,4/1/2020
-United Kingdom,182270,5/1/2020
-United Kingdom,257579,6/1/2020
-United Kingdom,283770,7/1/2020
-United Kingdom,303942,8/1/2020
-United Kingdom,337168,9/1/2020
-United Kingdom,460178,10/1/2020
+﻿Country,Value,Date,Continent
+US,32,3/1/2020,America
+US,217910,4/1/2020,America
+US,1110909,5/1/2020,America
+US,1814009,6/1/2020,America
+US,2685191,7/1/2020,America
+US,4617614,8/1/2020,America
+US,6071171,9/1/2020,America
+US,7277791,10/1/2020,America
+India,3,3/1/2020,Asia
+India,1998,4/1/2020,Asia
+India,37257,5/1/2020,Asia
+India,198370,6/1/2020,Asia
+India,604641,7/1/2020,Asia
+India,1750723,8/1/2020,Asia
+India,3769523,9/1/2020,Asia
+India,6394068,10/1/2020,Asia
+Brazil,2,3/1/2020,America
+Brazil,6836,4/1/2020,America
+Brazil,92202,5/1/2020,America
+Brazil,526447,6/1/2020,America
+Brazil,1448753,7/1/2020,America
+Brazil,2707877,8/1/2020,America
+Brazil,3950931,9/1/2020,America
+Brazil,4847092,10/1/2020,America
+Russia,2,3/1/2020,Europe
+Russia,2777,4/1/2020,Europe
+Russia,114431,5/1/2020,Europe
+Russia,414328,6/1/2020,Europe
+Russia,653479,7/1/2020,Europe
+Russia,843890,8/1/2020,Europe
+Russia,997072,9/1/2020,Europe
+Russia,1179634,10/1/2020,Europe
+Colombia,0,3/1/2020,America
+Colombia,1065,4/1/2020,America
+Colombia,7006,5/1/2020,America
+Colombia,30493,6/1/2020,America
+Colombia,102009,7/1/2020,America
+Colombia,306181,8/1/2020,America
+Colombia,624026,9/1/2020,America
+Colombia,835339,10/1/2020,America
+Peru,0,3/1/2020,America
+Peru,1323,4/1/2020,America
+Peru,40459,5/1/2020,America
+Peru,170039,6/1/2020,America
+Peru,288477,7/1/2020,America
+Peru,407492,8/1/2020,America
+Peru,652037,9/1/2020,America
+Peru,814829,10/1/2020,America
+Spain,84,3/1/2020,Europe
+Spain,104118,4/1/2020,Europe
+Spain,215216,5/1/2020,Europe
+Spain,239638,6/1/2020,Europe
+Spain,249659,7/1/2020,Europe
+Spain,288522,8/1/2020,Europe
+Spain,470973,9/1/2020,Europe
+Spain,778607,10/1/2020,Europe
+Argentina,0,3/1/2020,America
+Argentina,1054,4/1/2020,America
+Argentina,4532,5/1/2020,America
+Argentina,17415,6/1/2020,America
+Argentina,67197,7/1/2020,America
+Argentina,196543,8/1/2020,America
+Argentina,428239,9/1/2020,America
+Argentina,765002,10/1/2020,America
+Mexico,5,3/1/2020,America
+Mexico,1378,4/1/2020,America
+Mexico,20739,5/1/2020,America
+Mexico,93435,6/1/2020,America
+Mexico,231770,7/1/2020,America
+Mexico,434193,8/1/2020,America
+Mexico,606036,9/1/2020,America
+Mexico,748315,10/1/2020,America
+South Africa,0,3/1/2020,Africa
+South Africa,1380,4/1/2020,Africa
+South Africa,5951,5/1/2020,Africa
+South Africa,34357,6/1/2020,Africa
+South Africa,159333,7/1/2020,Africa
+South Africa,503290,8/1/2020,Africa
+South Africa,628259,9/1/2020,Africa
+South Africa,676084,10/1/2020,Africa
+France,130,3/1/2020,Europe
+France,56989,4/1/2020,Europe
+France,165764,5/1/2020,Europe
+France,185952,6/1/2020,Europe
+France,194985,7/1/2020,Europe
+France,213031,8/1/2020,Europe
+France,306951,9/1/2020,Europe
+France,589825,10/1/2020,Europe
+Chile,9,3/1/2020,America
+Chile,3137,4/1/2020,America
+Chile,18687,5/1/2020,America
+Chile,129020,6/1/2020,America
+Chile,282043,7/1/2020,America
+Chile,357658,8/1/2020,America
+Chile,413145,9/1/2020,America
+Chile,464750,10/1/2020,America
+Iran,978,3/1/2020,Asia
+Iran,47593,4/1/2020,Asia
+Iran,95646,5/1/2020,Asia
+Iran,154445,6/1/2020,Asia
+Iran,230211,7/1/2020,Asia
+Iran,306752,8/1/2020,Asia
+Iran,376894,9/1/2020,Asia
+Iran,461044,10/1/2020,Asia
+United Kingdom,94,3/1/2020,Europe
+United Kingdom,43398,4/1/2020,Europe
+United Kingdom,182270,5/1/2020,Europe
+United Kingdom,257579,6/1/2020,Europe
+United Kingdom,283770,7/1/2020,Europe
+United Kingdom,303942,8/1/2020,Europe
+United Kingdom,337168,9/1/2020,Europe
+United Kingdom,460178,10/1/2020,Europe
