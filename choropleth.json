@@ -45,7 +45,8 @@
         "domain": [1, 15000],
         "range": ["#fce5de", "#611701"]
       },
-      "title":"Cases/Million"
+      "title":"Cases/Mil", 
+      "legend":{"titleFontStyle":"trebuchet","titleFontWeight":"bolder"}
     },
     "opacity": {
       "condition": {"test": "datum.population > Population_above ", "value": 1},

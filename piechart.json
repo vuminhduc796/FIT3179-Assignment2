@@ -14,7 +14,41 @@
       {"Race": "White", "population": 65, "cases": 43, "deaths": 37},
       {"Race": "Other", "population": 13, "cases": 18, "deaths": 20}
     ]
+  },"transform": [{
+    "window": [{
+      "op": "sum",
+      "field": "deaths",
+      "as": "TotalDeath"
+    }],
+    "frame": [null, null]
   },
+  {
+    "calculate": "datum.deaths/datum.TotalDeath * 100",
+    "as": "PercentDeath"
+  },{
+    "window": [{
+      "op": "sum",
+      "field": "population",
+      "as": "TotalPop"
+    }],
+    "frame": [null, null]
+  },
+  {
+    "calculate": "datum.population/datum.TotalPop * 100",
+    "as": "PercentPop"
+  },{
+    "window": [{
+      "op": "sum",
+      "field": "cases",
+      "as": "Total"
+    }],
+    "frame": [null, null]
+  },
+  {
+    "calculate": "datum.cases/datum.Total * 100",
+    "as": "PercentCase"
+  }
+  ],
   "hconcat": [
     {
       "selection": {
@@ -41,7 +75,13 @@
         "opacity": {
           "condition": {"selection": "highlight", "value": 1},
           "value": 0.27
-        }
+        },
+        "tooltip":[{
+          "field": "Race","type": "nominal"
+        },
+        {
+          "field": "PercentPop","type": "quantitative", "title": "Percentage"
+        }]
       },
       "view": {"stroke": null}
     },
@@ -55,6 +95,13 @@
           "condition": {"selection": "highlight", "value": 1},
           "value": 0.27
         }
+        ,
+        "tooltip":[{
+          "field": "Race","type": "nominal"
+        },
+        {
+          "field": "PercentCase","type": "quantitative", "title": "Percentage"
+        }]
       },
       "view": {"stroke": null}
     },
@@ -71,7 +118,13 @@
         "opacity": {
           "condition": {"selection": "highlight", "value": 1},
           "value": 0.27
-        }
+        },
+        "tooltip":[{
+          "field": "Race","type": "nominal"
+        },
+        {
+          "field": "PercentDeath","type": "quantitative", "title": "Percentage"
+        }]
       },
       "view": {"stroke": null}
     }
