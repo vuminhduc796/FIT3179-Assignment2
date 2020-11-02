@@ -1,0 +1,87 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 750,
+  "height": 350,
+  "data": {
+    "url": "./areachart.csv"
+  },
+  "params": [
+    {
+      "name": "top_Val",
+      "value": 10,
+      "bind": {
+        "input": "range",
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "name": "Top: "
+      }
+    },
+    {
+      "name": "Region_selection",
+      "bind": {
+        "input": "select",
+        "options": [null, "America", "Europe", "Africa", "Asia"],
+        "labels": ["Show All", "America", "Europe", "Africa", "Asia"],
+        "name": "Region Selection: "
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "Region_selection == null || datum.Continent==Region_selection"},
+    {"filter": "datum.Rank <= top_Val"}
+  ],
+  "selection": {
+    "highlight": {"type": "multi", "fields": ["Country"], "bind": "legend"}
+  },
+  "mark": "area",
+  "encoding": {
+    "x": {
+      "timeUnit": "yearmonth",
+      "field": "Date",
+      "title": "Date",
+      "axis": {
+        "format": "%b %Y",
+        "grid": false,
+        "ticks": false,
+        "labelFontSize": 12,
+        "titleFontSize": 14
+      }
+    },
+    "y": {
+      "aggregate": "sum",
+      "field": "Value",
+      "title": "Total Cases",
+      "axis": {"format": ".2s", "labelFontSize": 12, "titleFontSize": 14}
+    },
+    "color": {
+      "field": "Country",
+      "scale": {"range":["#7a7a43","#524218","#681740","#7a1f1a","#e6d4a3","#c90c0c", "#ed8b85", "#e6550d"],
+      "domain":["Argentina","Brazil","Peru","Spain","US","Russia","Colombia","India"]},
+      "legend": {"labelFontSize": 11}
+    },
+    "opacity": {
+      "condition": {"selection": "highlight", "value": 1},
+      "value": 0.27
+    },
+    "order": {"field": "rank"},
+    "tooltip": [
+      {"field": "Country", "type": "nominal"},
+      {
+        "field": "sum_Value",
+        "type": "quantitative",
+        "format": ",",
+        "title": "Recorded Cases"
+      },
+      {
+        "field": "yearmonth_Date",
+        "type": "temporal",
+        "format": "%B %Y",
+        "title": "Date"
+      },
+      {"field": "Continent", "type": "nominal"},
+      {"field": "Rank", "type": "quantitative"}
+    ]
+  },
+  "config": {}
+}

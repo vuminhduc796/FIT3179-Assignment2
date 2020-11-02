@@ -1,0 +1,80 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "A simple pie chart with embedded data.",
+  "data": {
+    "values": [
+      {"Race": "Black/African", "population": 4, "cases": 5, "deaths": 4},
+      {"Race": "Asian", "population": 4, "cases": 5, "deaths": 4},
+      {
+        "Race": "Indian/Alaska Native",
+        "population": 14,
+        "cases": 29,
+        "deaths": 35
+      },
+      {"Race": "White", "population": 65, "cases": 43, "deaths": 37},
+      {"Race": "Other", "population": 13, "cases": 18, "deaths": 20}
+    ]
+  },
+  "hconcat": [
+    {
+      "selection": {
+        "highlight": {"type": "multi", "fields": ["Race"], "bind": "legend"}
+      },
+      "title": {"text": "Population"},
+      "width":262,
+      "mark": "arc",
+      "encoding": {
+        "theta": {"field": "population", "type": "quantitative"},
+        "color": {
+          "field": "Race",
+          "type": "nominal",
+          "scale": {
+            "range": ["#e6550d", "#c90c0c", "#e6d4a3", "#7a1f1a", "#ed8b85"]
+          },
+          "legend":{
+            "orient": "none",
+            "direction": "horizontal",
+            "legendY": 230,
+            "legendX": 30
+          }
+        },
+        "opacity": {
+          "condition": {"selection": "highlight", "value": 1},
+          "value": 0.27
+        }
+      },
+      "view": {"stroke": null}
+    },
+    {
+      "title": {"text": "Total Cases"},
+      "mark": "arc",
+      "encoding": {
+        "theta": {"field": "cases", "type": "quantitative"},
+        "color": {"field": "Race", "type": "nominal"},
+        "opacity": {
+          "condition": {"selection": "highlight", "value": 1},
+          "value": 0.27
+        }
+      },
+      "view": {"stroke": null}
+    },
+    {
+      "title": {"text": "Deaths"},
+      "mark": "arc",
+      "encoding": {
+        "theta": {"field": "deaths", "type": "quantitative"},
+        "color": {
+          "field": "Race",
+          "type": "nominal",
+          "legend": {"labelFontSize": 12, "titleFontSize": 14}
+        },
+        "opacity": {
+          "condition": {"selection": "highlight", "value": 1},
+          "value": 0.27
+        }
+      },
+      "view": {"stroke": null}
+    }
+  ],
+  "config": {}
+}

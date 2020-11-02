@@ -1,0 +1,31 @@
+body {
+    background-color:#f5f0eb;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #4a4a4a;
+}
+div > h1 {
+    color: maroon;
+    width: 100%;
+    border: 3px solid maroon;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    background-color: #e3e3e3;
+    padding: 35px 0;
+}
+div > h2 {
+    color: maroon;
+    border-top: 3px solid maroon;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 20px;
+}
+div > div >div >p{
+    text-align: justify;
+    font-size: 18px;
+    background-color: gainsboro;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-left: 3px solid maroon;
+}

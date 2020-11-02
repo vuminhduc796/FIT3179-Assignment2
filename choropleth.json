@@ -1,0 +1,111 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 800,
+  "height": 600,
+  "projection": {"type": "equirectangular"},
+  "data": {
+    "url": "https://raw.githubusercontent.com/vuminhduc796/FIT3179-Week9/main/ne_110m.json",
+    "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+  },
+  "params": [
+    {
+      "name": "Population_above",
+      "value": 1,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 100000000,
+        "step": 10000000,
+        "name": "Minimum population:"
+      }
+    }
+  ],
+  "transform": [
+    {
+      "lookup": "properties.NAME",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/vuminhduc796/FIT3179-Assignment2/main/data.csv"
+        },
+        "key": "location",
+        "fields": ["total_cases_per_million", "population", "date"]
+      }
+    }
+  ],
+ 
+
+    "layer":[{
+       "mark": {"type": "geoshape"},
+       "encoding":{
+           "color": {
+      "field": "total_cases_per_million",
+      "type": "quantitative",
+      "scale": {
+        "type": "log",
+        "domain": [1, 15000],
+        "range": ["#fce5de", "#611701"]
+      },
+      "title":"Total Cases"
+    },
+    "opacity": {
+      "condition": {"test": "datum.population > Population_above ", "value": 1},
+      "value": 0.15
+    },
+    "tooltip": [
+      {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+      {
+        "field": "total_cases_per_million",
+        "type": "quantitative",
+        "title": "Cases per Million"
+      },
+      {"field": "date", "type": "ordinal"}
+    ]
+       }},{
+    "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "top",
+        "dx": -300,
+        "dy": 30,
+        "fontSize": 11,
+        "width": 100,
+        "text":"America countries have high "
+      },
+      "encoding": {
+        "color": {"value": "black"},
+        "opacity": {
+          "condition": {
+            "test": "datum['properties.NAME'] == 'United States of America'",
+            "value": 1
+          },
+          "value": 0
+        }
+      }
+    },
+    {
+    "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "top",
+        "dx": -300,
+        "dy": 40,
+        "fontSize": 11,
+        "width": 100,
+        "text":"average cases per million people."
+      },
+      "encoding": {
+        "color": {"value": "black"},
+        "opacity": {
+          "condition": {
+            "test": "datum['properties.NAME'] == 'United States of America'",
+            "value": 1
+          },
+          "value": 0
+        }
+      }
+    }
+    ]
+    
+  
+
+}

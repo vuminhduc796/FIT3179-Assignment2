@@ -1,0 +1,398 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v3.0.json",
+  "height": 600,
+  "width": 800,
+  "data": [
+    {
+      "name": "rawData",
+      "values": [
+        {
+          "continent": "Africa",
+          "status": "Active",
+          "number": 1625085,
+          "stk1": "Africa",
+          "stk2": "Active",
+          "size": 1625085
+        },
+        {
+          "continent": "Africa",
+          "status": "Recover",
+          "number": 3178240,
+          "stk1": "Africa",
+          "stk2": "Recover",
+          "size": 3178240
+        },
+        {
+          "continent": "Africa",
+          "status": "Death",
+          "number": 40985,
+          "stk1": "Africa",
+          "stk2": "Death",
+          "size": 40985
+        },
+        {
+          "continent": "America",
+          "status": "Active",
+          "number": 18253217,
+          "stk1": "America",
+          "stk2": "Active",
+          "size": 18253217
+        },
+        {
+          "continent": "America",
+          "status": "Recover",
+          "number": 12062765,
+          "stk1": "America",
+          "stk2": "Recover",
+          "size": 12062765
+        },
+        {
+          "continent": "America",
+          "status": "Death",
+          "number": 622641,
+          "stk1": "America",
+          "stk2": "Death",
+          "size": 622641
+        },
+        {
+          "continent": "Asia",
+          "status": "Death",
+          "number": 251830,
+          "stk1": "Asia",
+          "stk2": "Death",
+          "size": 251830
+        },
+        {
+          "continent": "Asia",
+          "status": "Active",
+          "number": 12521088,
+          "stk1": "Asia",
+          "stk2": "Active",
+          "size": 12521088
+        },
+        {
+          "continent": "Asia",
+          "status": "Recover",
+          "number": 2672839,
+          "stk1": "Asia",
+          "stk2": "Recover",
+          "size": 2672839
+        },
+        {
+          "continent": "Europe",
+          "status": "Death",
+          "number": 247861,
+          "stk1": "Europe",
+          "stk2": "Death",
+          "size": 247861
+        },
+        {
+          "continent": "Europe",
+          "status": "Active",
+          "number": 7479908,
+          "stk1": "Europe",
+          "stk2": "Active",
+          "size": 7479908
+        },
+        {
+          "continent": "Europe",
+          "status": "Recover",
+          "number": 9645103,
+          "stk1": "Europe",
+          "stk2": "Recover",
+          "size": 9645103
+        },
+        {
+          "continent": "Oceania",
+          "status": "Death",
+          "number": 976,
+          "stk1": "Oceania",
+          "stk2": "Death",
+          "size": 976
+        },
+        {
+          "continent": "Oceania",
+          "status": "Active",
+          "number": 4126,
+          "stk1": "Oceania",
+          "stk2": "Active",
+          "size": 4126
+        },
+        {
+          "continent": "Oceania",
+          "status": "Recover",
+          "number": 30075,
+          "stk1": "Oceania",
+          "stk2": "Recover",
+          "size": 30075
+        }
+      ],
+      "transform": [
+        {"type": "formula", "expr": "datum['continent']", "as": "stk1"},
+        {"type": "formula", "expr": "datum.status", "as": "stk2"},
+        {"type": "formula", "expr": "datum.number", "as": "size"}
+      ]
+    },
+    {
+      "name": "nodes",
+      "source": "rawData",
+      "transform": [
+        {"type": "formula", "expr": "datum.stk1+datum.stk2", "as": "key"},
+        {"type": "fold", "fields": ["stk1", "stk2"], "as": ["stack", "grpId"]},
+        {
+          "type": "formula",
+          "expr": "datum.stack == 'stk1' ? datum.stk1+' '+datum.stk2 : datum.stk2+' '+datum.stk1",
+          "as": "sortField"
+        },
+        {
+          "type": "stack",
+          "groupby": ["stack"],
+          "sort": {"field": "sortField", "order": "descending"},
+          "field": "size"
+        },
+        {"type": "formula", "expr": "(datum.y0+datum.y1)/2", "as": "yc"}
+      ]
+    },
+    {
+      "name": "groups",
+      "source": "nodes",
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": ["stack", "grpId"],
+          "fields": ["size"],
+          "ops": ["sum"],
+          "as": ["total"]
+        },
+        {
+          "type": "stack",
+          "groupby": ["stack"],
+          "sort": {"field": "grpId", "order": "descending"},
+          "field": "total"
+        },
+        {"type": "formula", "expr": "scale('y', datum.y0)", "as": "scaledY0"},
+        {"type": "formula", "expr": "scale('y', datum.y1)", "as": "scaledY1"},
+        {
+          "type": "formula",
+          "expr": "datum.stack == 'stk1'",
+          "as": "rightLabel"
+        },
+        {
+          "type": "formula",
+          "expr": "datum.total/domain('y')[1]",
+          "as": "percentage"
+        }
+      ]
+    },
+    {
+      "name": "destinationNodes",
+      "source": "nodes",
+      "transform": [{"type": "filter", "expr": "datum.stack == 'stk2'"}]
+    },
+    {
+      "name": "edges",
+      "source": "nodes",
+      "transform": [
+        {"type": "filter", "expr": "datum.stack == 'stk1'"},
+        {
+          "type": "lookup",
+          "from": "destinationNodes",
+          "key": "key",
+          "fields": ["key"],
+          "as": ["target"]
+        },
+        {
+          "type": "linkpath",
+          "orient": "horizontal",
+          "shape": "diagonal",
+          "sourceY": {"expr": "scale('y', datum.yc)"},
+          "sourceX": {"expr": "scale('x', 'stk1') + bandwidth('x')"},
+          "targetY": {"expr": "scale('y', datum.target.yc)"},
+          "targetX": {"expr": "scale('x', 'stk2')"}
+        },
+        {
+          "type": "formula",
+          "expr": "range('y')[0]-scale('y', datum.size)",
+          "as": "strokeWidth"
+        },
+        {
+          "type": "formula",
+          "expr": "datum.size/domain('y')[1]",
+          "as": "percentage"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "band",
+      "range": "width",
+      "domain": ["stk1", "stk2"],
+      "paddingOuter": 0.0,
+      "paddingInner": 0.95
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "domain": {"data": "nodes", "field": "y1"}
+    },
+    {
+      "name": "stackNames",
+      "type": "ordinal",
+      "range": ["Continent", "Outcome"],
+      "domain": ["stk1", "stk2"]
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": ["Active", "Death", "Recover"],
+      "range": ["#e6d4a3", "brown", "#4d541e"]
+    },
+    {
+      "name": "color_outcome",
+      "type": "ordinal",
+      "domain": ["Oceania", "America", "Africa", "Asia", "Europe"],
+      "range": ["#e6d4a3", "#7a1f1a", "#ed8b85", "#e6550d", "#c90c0c"]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "x",
+      "domain": false,
+      "ticks": false,
+      "labelPadding": 10,
+      "encode": {
+        "labels": {
+          "update": {
+            "text": {
+              "scale": "stackNames",
+              "field": "value",
+              "fontWeight": "bold",
+              "fontSize": 100
+              
+            }
+          }
+        }
+      }
+    },
+    {
+      "orient": "top",
+      "scale": "x",
+      "domain": false,
+      "ticks": false,
+      "labelPadding": 10,
+      "encode": {
+        "labels": {
+          "update": {
+            "text": {
+              "scale": "stackNames",
+              "field": "value",
+              "fontWeight": "light",
+              "fontSize": 10
+            }
+          }
+        }
+      }
+    },
+    {
+      "orient": "left",
+      "scale": "y",
+      "labels": false,
+      "domain": false,
+      "ticks": false
+    }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {"data": "nodes"},
+      "encode": {
+        "enter": {
+          "stroke": {"value": "#000"},
+          "fill": {"scale": "color_outcome", "field": "stk1"},
+          "fillOpacity": {"value": 0.7},
+          "strokeWidth": {"value": 1},
+          "width": {"scale": "x", "band": 1},
+          "x": {"scale": "x", "field": "stack"},
+          "y": {"field": "y0", "scale": "y"},
+          "y2": {"field": "y1", "scale": "y"}
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {"data": "destinationNodes"},
+      "encode": {
+        "enter": {
+          "stroke": {"value": "#000"},
+          "fill": {"scale": "color", "field": "stk2"},
+          "fillOpacity": {"value": 0.9},
+          "strokeWidth": {"value": 1},
+          "width": {"scale": "x", "band": 1},
+          "x": {"scale": "x", "field": "stack"},
+          "y": {"field": "y0", "scale": "y"},
+          "y2": {"field": "y1", "scale": "y"}
+        }
+      }
+    },
+    {
+      "type": "path",
+      "name": "edgeMark",
+      "from": {"data": "edges"},
+      "clip": true,
+      "encode": {
+        "update": {
+          "stroke": [{"scale": "color_outcome", "field": "stk1"}],
+          "strokeWidth": {"field": "strokeWidth"},
+          "path": {"field": "path"},
+          "strokeOpacity": {
+            "signal": " (groupHover.stk1 == datum.stk1 || groupHover.stk2 == datum.stk2) ? 0.9 : 0.3"
+          },
+          "zindex": {
+            "signal": "(groupHover.stk1 == datum.stk1 || groupHover.stk2 == datum.stk2) ? 1 : 0"
+          },
+          "tooltip": {
+            "signal": "datum.stk1 + ' → ' + datum.stk2 + '    ' + format(datum.size, ',.0f') + '   (' + format(datum.percentage, '.1%') + ')'"
+          }
+        },
+        "hover": {"strokeOpacity": {"value": 1}}
+      }
+    },
+    {
+      "type": "text",
+      "from": {"data": "groups"},
+      "interactive": false,
+      "encode": {
+        "update": {
+          "x": {
+            "signal": "scale('x', datum.stack) + (datum.rightLabel ? bandwidth('x') + 8 : -8)"
+          },
+          "yc": {"signal": "(datum.scaledY0 + datum.scaledY1)/2"},
+          "align": {"signal": "datum.rightLabel ? 'left' : 'right'"},
+          "baseline": {"value": "middle"},
+          "fontWeight": {"value": "bold"},
+          "text": {
+            "signal": "abs(datum.scaledY0-datum.scaledY1) > 13 ? datum.grpId : ''"
+          }
+        }
+      }
+    }
+  ],
+  "signals": [
+    {
+      "name": "groupHover",
+      "value": {},
+      "on": [
+        {
+          "events": "@groupMark:mouseover",
+          "update": "{stk1:datum.stack=='stk1' && datum.grpId, stk2:datum.stack=='stk2' && datum.grpId}"
+        },
+        {"events": "mouseout", "update": "{}"}
+      ]
+    }
+  ],
+  "config": {}
+}

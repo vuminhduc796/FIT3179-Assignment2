@@ -1,0 +1,266 @@
+  
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FIT3179: Homework Week 10</title>
+  <!-- Import Vega & Vega-Lite -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+  <!-- Import vega-embed -->
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Trebuchet MS:ital,wght@0,300;0,500;0,800;1,300;1,500;1,800&display=swap" rel="stylesheet">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- custom CSS -->
+  <style>
+    *{
+      font-family: 'Trebuchet MS', sans-serif;
+    }
+    h1{
+      font-weight: 800;
+    }
+     body{
+       background-color: black;
+     }
+     .page{
+       width: 1150px;    
+       background-color: white;   
+       margin: auto;
+       padding: 50px;
+       padding-top: 35px;
+    }
+    .vis-container{
+      width: 100%;
+    }
+    .description h2, h1{
+      margin-top:0px;
+    }
+    .description-right {
+      padding-left: 20px;
+    }
+    .description-left{
+      padding-right: 20px;
+    }
+    .pure-g{
+      margin-bottom: 25px;
+    }
+    p{
+     font-size: 18px;
+     font-weight: 300;
+    }
+    .small-font{
+      font-size: 13px;
+      font-weight: 300;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<header>    
+    </header>
+ <div class="page">
+
+    <h1>TRACKING COVID-19 ON THE GLOBAL SCALE</h1>
+    <br>
+
+  <!-- end pure grid group -->
+  <h2> Global Confirmed Cases by Country</h2>
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-4">
+          <div class="description description-left">
+            
+            <p> This visualisation used choropleth map to indicate the normalized confirmed
+                cases by a million people. The darker color will represent the higher density
+                of coronavirus patients. As can be seen from the graph, although the virus started
+                spreading from Asia, the heaviest effected coutries were United States and Brazil.
+                Moreover, due to the fact that China and India are overpopulated, the total cases per
+                million of people were low. It is interesting to see the diversity of values in Africa,
+                while some countries were maintaining a low number of cases, the other such as Libra and
+                South Africa were struggling to control the spread of this decease. Overall, European
+                countries were having relatively high figures. The data is last updated on 24/10/2020
+                 and visualiszed on 27/10/2020. Filter for minimum population was encoded.
+                
+            </p>
+          </div>
+        </div>
+        <div class="pure-u-3-4">
+          <div id="vis1" class="vis-container" style="padding-top: 14px;"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+    <br>
+    <h2>Global Confirmed Cases by Continent</h2>
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-4">
+          <div class="description description-left">
+            <p>This visualisation demonstrates the total cases of each country, encoded with different 
+                colors representing the continent. Although in the first graph, a majority of Oceania countries
+                were having high total of cases by million of people, the total confirmed cases remained low.
+                The idenitcal trends are also applied for Africa and Europe. Asia and America were having the 
+                most confirmed cases due to the dense and high population. Brazil and United States contributed
+                over half on total cases in America while India is currently dominating in Asia. On the other hand,
+                the total number of confirmed cases in Europe is equally divided to many countries, represented as
+                many rectangles with identical areas. Lastly, South Africa were having the most confirmed cases in 
+                Africa, followed by Morocco.
+        
+            </p>
+          </div>
+        </div>
+        <div class="pure-u-3-4">
+          <div id="vis2" class="vis-container" style="padding-top: 14px;"></div>
+        </div>
+
+    </div>
+    <br>
+    <h2> The Outcome of Covid-19 by Continent</h2>
+
+    <div class="pure-g">
+        <div class="pure-u-1-4">
+          <div class="description description-left">
+        <p>In this sankey diagram, we visualised the outcome of Covid-19 decease by continent. This visualisation focused
+            on how each continent encountered Coronavirus. As can be seen from the diagram, Americas has the highest number
+            of cases, more than half of those are still active. The total of deaths from America is the highest, comparing to
+            other continents. On the other hand, while Asia and Europe have comparable total of cases, Asia is still in the
+            emergency stage as most of the cases are still active. Europe is recovering from the decease, the total number of
+            recovered cases is high, comparing to other continents. The total of death cases globally remaining low as a good
+            sign. Almost half of the confirmed cases resulted in recovery, while more than half of the cases are still active.
+            Lastly, Oceania and Africa are still doing well, stopping the spread of Covid-19.
+    
+        </p>  
+        </div>
+        </div>
+        <div class="pure-u-3-4">
+          <div id="vis3" class="vis-container" style="padding-top: 14px;"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+    <br>
+    <h2>Gender and Age Group Effects on Covid-19</h2>
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-4">
+          <div class="description description-left">
+           <p>This visualisation provides the comparison between different age groups and genders on total of infected cases in Australia.
+                It can be observed from the chart that people between 20-39 years old have the highest risk of infection.
+             When it comes to comparison between male and female, although the patterns are quite similar, female is having higher recorded
+            cases than male. Female at 79+ age group had unexpectedly high number of cases.  </p>
+          </div>
+        </div>
+        <div class="pure-u-3-4">
+          <div id="vis4" class="vis-container" style="padding-top: 14px;"></div>
+        </div>
+    </div>
+    <br>
+    <h2> Race Effects on Covid-19 </h2>
+    <div class="pure-g">
+        <div class="pure-u-1-4">
+          <div class="description description-left">
+        
+            <p>This visualisation contains 3 pie charts, representing the population, total cases and total deaths respectively.
+            We can see that although White people has the highest percentage in population, their contribute towards total cases
+            and deaths are decreasing. Black/ African and Asian had similar values for all categories.
+            </p>          </div>
+        </div>
+        <div class="pure-u-3-4">
+          <div id="vis5" class="vis-container" style="padding-top: 14px;"></div>
+        </div>
+    </div>
+    <br>
+    <!-- end pure grid group -->
+    <h2>Top 10 Countries with Most Cases</h2>
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-4">
+          <div class="description description-left">
+           <p>
+               This area chart represents the growth of Covid-19 cases by the top 10 affected countries. The dataset was collected
+               from March 2020 to September 2020. We can see clearly that the US, India and Brazil are having the highest number of
+               cases respectively. Followed up by Russia and Colombia. It is noticable that the total number of cases dramatically
+                increased in July 2020. The total recorded cases contribued from the top 10 countries was nearly 23 millions in 
+                September.
+           </p>
+          </div>
+        </div>
+        <div class="pure-u-3-4">
+          <div id="vis6" class="vis-container" style="padding-top: 14px;"></div>
+        </div>
+    </div>
+<br>
+    <h2> The Covid-19 Outcome by Country</h2>
+       
+    <div class="pure-g">
+        <div class="pure-u-1-4">
+          <div class="description description-left">
+            <p> In this bubble plot, we can see how each country encounters Covid-19, indicated by the total of deaths and the 
+                total of recovered cases. Each country is represented as a dot, with encoded size for the total cases and color
+                for continent. A country that does well will have high number of recoveries but low number of deaths. 
+                Although Brazil and United States had comparable total cases, Brazil was doing better by having more recovery cases
+                than the US. This graph shows an interesting fact that the death/recovery ratio was not dependent on continents, as
+                the colors are well-mixed in the middle of the graph. It is reasonable that countries with higher number of total cases
+                will have higher number of deaths and recoveries.
+            </p>
+          </div>
+        </div>
+        <div class="pure-u-3-4">
+          <div id="vis7" class="vis-container" style="padding-top: 14px;"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+    <br>
+    <br>
+    <br>
+    <br> 
+    <br>
+    <br> 
+    <hr>
+    <h3> Created by Minh Duc Vu.</h3>
+    </div>
+  
+  
+  </div> <!-- end page -->
+   
+<script type="text/javascript">
+  var choroplethVis = "./choropleth.json";
+  var bubbleVis = "./bubble_plot.json";
+  var sankeyVis = "./sankey.json";
+  var treemapVis = "./treemap.json";
+  var pieVis = "./piechart.json";
+  var areaVis = "./area_chart.json";
+  var pyramidVis = "./population_pyramid.json";
+
+  vegaEmbed('#vis1', choroplethVis, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+   vegaEmbed('#vis7', bubbleVis, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+  vegaEmbed('#vis3', sankeyVis, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+   vegaEmbed('#vis2', treemapVis, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  vegaEmbed('#vis5', pieVis, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+  vegaEmbed('#vis4', pyramidVis, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+   vegaEmbed('#vis6', areaVis, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+</script>
+</body>
+</html>
+

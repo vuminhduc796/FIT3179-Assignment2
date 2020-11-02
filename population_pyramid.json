@@ -1,0 +1,119 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/vuminhduc796/FIT3179-Assignment2/main/pyramid-data.csv"
+  },
+  "spacing": 0,
+  "hconcat": [
+    {
+      "transform": [{"filter": {"field": "Sex", "equal": "Female"}}],
+      "title": {"fontSize": 15, "text": "Female"},
+      "width": 375,
+      "height": 300,
+      "encoding": {
+        "y": {"field": "Age Group", "axis": null, "sort": "descending"},
+        "x": {
+          "aggregate": "sum",
+          "field": "Total Cases",
+          "title": "Total Cases",
+          "axis": {"format": "s", "titleFontSize": 14, "labelFontSize": 12},
+          "sort": "descending"
+        }
+      },
+      "layer": [
+        {
+          "mark": "bar",
+          "encoding": {
+            "color": {
+              "field": "Sex",
+              "scale": {"range": ["#e6d4a3", "#6b2e1c"]},
+              "legend": null
+            },
+            "tooltip": [
+              {"field": "Age Group", "type": "nominal"},
+              {"field": "Sex", "type": "nominal"},
+              {"field": "Total Cases", "type": "quantitative"}
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 3
+          },
+          "encoding": {"text": {"field": "Total Cases"}}
+        }
+    
+      ]
+    },
+    {
+      "width": 50,
+      "height": 300,
+      "view": {"stroke": null},
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "font": "Serif",
+        "fontSize": 13
+      },
+      "encoding": {
+        "y": {
+          "field": "Age Group",
+          "type": "ordinal",
+          "axis": null,
+          "sort": "descending"
+        },
+        "text": {"field": "Age Group", "type": "ordinal"}
+      }
+    },
+    {
+      "transform": [{"filter": {"field": "Sex", "equal": "Male"}}],
+      "title": {"fontSize": 15, "text": "Male"},
+      "width": 375,
+      "height": 300,
+      "encoding": {
+        "y": {
+          "field": "Age Group",
+          "title": null,
+          "axis": null,
+          "sort": "descending"
+        },
+        "x": {
+          "aggregate": "sum",
+          "field": "Total Cases",
+          "title": "Total Cases",
+          "axis": {"format": "s", "titleFontSize": 14, "labelFontSize": 12}
+        }
+      },
+      "layer": [
+        {
+          "mark": "bar",
+          "encoding": {
+            "color": {
+              "field": "Sex",
+              "scale": {"range": ["#e3e178", "#6b2e1c"]},
+              "legend": null
+            },
+            "tooltip": [
+              {"field": "Age Group", "type": "nominal"},
+              {"field": "Sex", "type": "nominal"},
+              {"field": "Total Cases", "type": "quantitative"}
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "dx": 3
+          },
+          "encoding": {"text": {"field": "Total Cases"}}
+        }
+      ]
+    }
+  ],
+  "config": {"view": {"stroke": null}, "axis": {"grid": false}}
+}
